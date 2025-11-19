@@ -62,7 +62,15 @@ local.properties
 
 # CDT- autotools
 .autotools
-
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 # Java annotation processor (APT)
 .factorypath
 
@@ -261,6 +269,9 @@ Icon
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+
+### VS Code ###
+.vscode/
 
 # Directories potentially created on remote AFP share
 .AppleDB
