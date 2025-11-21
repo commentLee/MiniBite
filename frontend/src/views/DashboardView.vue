@@ -1,6 +1,28 @@
 <template>
-  <div class="p-8">
-    <h1 class="text-2xl font-bold text-gray-800 mb-4">대시보드</h1>
-    <p class="text-gray-600">MVP 핵심 위젯을 이 영역에 구성할 예정입니다.</p>
+  <div id="dashboard-content" class="p-8 space-y-8">
+    <AiRecommendationWidget />
+
+    <section id="analytics-dashboard" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <WeightChart />
+      <SideEffectsWidget />
+      <NutritionChart />
+      <SafeFoodsWidget />
+    </section>
+
+    <FabButton @click="handleFabClick" />
   </div>
 </template>
+
+<script setup>
+import AiRecommendationWidget from '../components/dashboard/AiRecommendationWidget.vue';
+import WeightChart from '../components/dashboard/WeightChart.vue';
+import SideEffectsWidget from '../components/dashboard/SideEffectsWidget.vue';
+import NutritionChart from '../components/dashboard/NutritionChart.vue';
+import SafeFoodsWidget from '../components/dashboard/SafeFoodsWidget.vue';
+import FabButton from '../components/common/FabButton.vue';
+
+const handleFabClick = () => {
+  // TODO: 식단/건강 상태 기록 모달 연결
+  alert('기록 모달을 연결해 주세요.');
+};
+</script>

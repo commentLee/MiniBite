@@ -2,6 +2,7 @@
   <header class="bg-white border-b border-gray-200 px-8 py-6">
     <div class="flex items-center justify-between">
       <div>
+        <p class="text-xs text-blue-500 font-semibold uppercase tracking-wide mb-1">Today</p>
         <h1 class="text-2xl font-bold text-gray-800">{{ pageTitle }}</h1>
         <p class="text-gray-600 mt-1 text-sm">{{ pageSubtitle }}</p>
       </div>
@@ -47,13 +48,13 @@ const pageTitle = computed(() => {
 const pageSubtitle = computed(() => {
   switch (route.name) {
     case 'dashboard':
-      return '오늘의 한 끼를 AI와 함께 준비하세요.';
+      return "AI 추천 · 기록 · 통계를 한눈에 확인하세요.";
     case 'group':
-      return '동기들과 챌린지를 함께 진행해요.';
+      return '동기 커뮤니티와 함께 챌린지를 이어가요.';
     case 'feed':
-      return '부작용 없는 세이프 피드를 확인하세요.';
+      return '가치 인증 피드를 살펴보세요.';
     case 'my':
-      return '내 건강 정보와 취향을 살펴보세요.';
+      return '내 프로필과 건강 정보를 관리하세요.';
     default:
       return '가치 있는 한 끼, MiniBite.';
   }
