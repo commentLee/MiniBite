@@ -21,5 +21,4 @@ public class MealLog {
     private String fullnessLevel;
     private Boolean nausea;
     private Boolean bloating;
-    private String note;
 }

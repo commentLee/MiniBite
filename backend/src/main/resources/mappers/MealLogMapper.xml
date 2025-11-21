@@ -18,8 +18,7 @@
             emotional_state,
             fullness_level,
             nausea,
-            bloating,
-            note
+            bloating
         ) VALUES (
             #{logId},
             #{userId},
@@ -29,8 +28,7 @@
             #{emotionalState},
             #{fullnessLevel},
             #{nausea},
-            #{bloating},
-            #{note}
+            #{bloating}
         )
     </insert>
 

@@ -29,7 +29,6 @@ public class DashboardService {
                 .fullnessLevel(null)
                 .nausea(request.getSideEffects() != null && request.getSideEffects().contains("nausea"))
                 .bloating(request.getSideEffects() != null && request.getSideEffects().contains("bloating"))
-                .note(request.getNote())
                 .build();
         mealLogMapper.insertMealLog(mealLog);
     }
