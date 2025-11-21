@@ -5,21 +5,26 @@
       <span class="text-blue-500 text-lg">🧠</span>
     </div>
 
-    <div class="space-y-3">
-      <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+    <div v-if="!insights.length" class="text-sm text-gray-500">부작용 상관관계 데이터가 없습니다.</div>
+    <div v-else class="space-y-3">
+      <div
+        v-for="(item, idx) in insights"
+        :key="idx"
+        class="p-4 rounded-lg border-l-4"
+        :class="item.level === 'high' ? 'bg-red-50 border-red-400' : 'bg-yellow-50 border-yellow-400'"
+      >
         <div class="flex items-center space-x-2">
-          <span>⚠️</span>
-          <span class="font-medium text-red-700">고지방 식단 시 메스꺼움 70%↑</span>
+          <span>{{ item.level === 'high' ? '⚠️' : 'ℹ️' }}</span>
+          <span
+            class="font-medium"
+            :class="item.level === 'high' ? 'text-red-700' : 'text-yellow-700'"
+          >
+            {{ item.title }}
+          </span>
         </div>
-        <p class="text-sm text-red-600 mt-1">최근 2주 데이터 기준 AI 분석</p>
-      </div>
-
-      <div class="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
-        <div class="flex items-center space-x-2">
-          <span>ℹ️</span>
-          <span class="font-medium text-yellow-700">식사 속도 빠름 → 더부룩함 45%↑</span>
-        </div>
-        <p class="text-sm text-yellow-600 mt-1">최근 1주 기준</p>
+        <p class="text-sm mt-1" :class="item.level === 'high' ? 'text-red-600' : 'text-yellow-600'">
+          {{ item.detail }}
+        </p>
       </div>
     </div>
 
@@ -28,3 +33,12 @@
     </button>
   </div>
 </template>
+
+<script setup>
+defineProps({
+  insights: {
+    type: Array,
+    default: () => [],
+  },
+});
+</script>

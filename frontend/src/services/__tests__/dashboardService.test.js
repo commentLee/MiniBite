@@ -1,10 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
 import apiClient from '../index.js';
-import { getAiRecommendation } from '../dashboardService.js';
+import { getAiRecommendation, getDashboardStatistics } from '../dashboardService.js';
 
 vi.mock('../index.js', () => ({
   default: {
     post: vi.fn(),
+    get: vi.fn(),
   },
 }));
 
@@ -18,5 +19,15 @@ describe('dashboardService', () => {
 
     expect(apiClient.post).toHaveBeenCalledWith('/dashboard/ai-recommendation', payload);
     expect(result).toEqual(resp);
+  });
+
+  it('대시보드 통계 API를 호출하고 응답을 반환한다', async () => {
+    const stats = { weightTrend: [70, 69.5], favoriteFoods: [], averageSatisfaction: 4.2 };
+    apiClient.get.mockResolvedValue({ data: { data: stats } });
+
+    const result = await getDashboardStatistics();
+
+    expect(apiClient.get).toHaveBeenCalledWith('/dashboard/statistics');
+    expect(result).toEqual(stats);
   });
 });
