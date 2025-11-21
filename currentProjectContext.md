@@ -9,21 +9,21 @@
 (사용자 가입 -> 기록 -> AI 추천 -> 통계 확인의 핵심 플로우)
 
 * **[Layout]**
-    * [ ] GNB (AppSidebar.vue, AppHeader.vue)
-    * [ ] FAB (메인 기록 버튼)
+    * [x] GNB (AppSidebar.vue, AppHeader.vue)
+    * [x] FAB (메인 기록 버튼)
 * **[Onboarding]**
     * [x] Onboarding-01: 계정 생성 (Backend: /auth/signup API)
     * [x] Onboarding-01: 계정 생성 (Frontend: OnboardingView.vue UI)
-    * [ ] Onboarding-02: 로그인 (Backend: /auth/login API)
-    * [ ] Onboarding-02: 로그인 (Frontend: LoginView.vue UI)
+    * [x] Onboarding-02: 로그인 (Backend: /auth/login API)
+    * [x] Onboarding-02: 로그인 (Frontend: LoginView.vue UI)
 * **[Dashboard (Core)]**
     * [ ] 관리-01: AI 추천 요청 (Backend: /dashboard/ai-recommendation API)
-    * [ ] 관리-01: AI 추천 요청 (Frontend: AiRecommendationWidget.vue)
-    * [ ] 관리-02: 식단 기록 (Backend: /dashboard/meal-record API)
-    * [ ] 관리-02: 식단 기록 (Frontend: 식단 기록 모달)
-    * [ ] 관리-02: 헬스케어 기록 (API, View)
-    * [ ] 관리-03: 통계/AI 분석 조회 (Backend: /dashboard/statistics API)
-    * [ ] 관리-03: 통계/AI 분석 조회 (Frontend: WeightChart.vue, SideEffectsWidget.vue 등)
+    * [x] 관리-01: AI 추천 요청 (Frontend: AiRecommendationWidget.vue)
+    * [x] 관리-02: 식단 기록 (Backend: /dashboard/meal-record API)
+    * [x] 관리-02: 식단 기록 (Frontend: 식단 기록 모달)
+    * [x] 관리-02: 헬스케어 기록 (API, View)
+    * [?] 관리-03: 통계/AI 분석 조회 (Backend: /dashboard/statistics API)
+    * [?] 관리-03: 통계/AI 분석 조회 (Frontend: WeightChart.vue, SideEffectsWidget.vue 등)
 * **[Profile (Basic)]**
     * [x] 내 프로필 조회 (Backend: /my/profile API)
     * [ ] 내 프로필 조회 (Frontend: MyProfileView.vue)
