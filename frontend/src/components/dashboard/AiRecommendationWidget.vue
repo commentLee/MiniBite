@@ -15,6 +15,7 @@
         <label class="block text-sm font-medium text-gray-700">현재 기분</label>
         <select
           v-model="form.mood"
+          data-test="mood-select"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
           <option value="">선택해주세요</option>
@@ -32,6 +33,7 @@
           <input
             v-model.number="form.appetite"
             type="range"
+            data-test="appetite-range"
             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
             min="0"
             max="100"
@@ -48,6 +50,7 @@
         <label class="block text-sm font-medium text-gray-700">컨디션</label>
         <select
           v-model="form.condition"
+          data-test="condition-select"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
           <option value="">선택해주세요</option>
@@ -60,8 +63,16 @@
       </div>
     </div>
 
-    <div class="mt-6 text-center">
+    <div class="mt-6 text-center space-y-3">
+      <div
+        v-if="errorMessage"
+        class="flex items-center justify-center space-x-2 text-sm text-red-700 bg-red-50 border border-red-100 rounded-lg px-4 py-3"
+      >
+        <span>⚠️</span>
+        <span>{{ errorMessage }}</span>
+      </div>
       <button
+        data-test="recommend-btn"
         class="px-8 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
         :disabled="!isValid || loading"
         @click="handleRecommend"
@@ -98,6 +109,7 @@
 
 <script setup>
 import { computed, reactive, ref } from 'vue';
+import { getAiRecommendation } from '../../services/dashboardService';
 
 const loading = ref(false);
 const form = reactive({
@@ -107,20 +119,28 @@ const form = reactive({
 });
 
 const result = ref(null);
+const errorMessage = ref('');
 const isValid = computed(() => form.mood && form.condition);
 
 const handleRecommend = async () => {
   if (!isValid.value) return;
   loading.value = true;
-  // TODO: API 연동 (/dashboard/ai-recommendation). 현재는 샘플 응답.
-  setTimeout(() => {
+  errorMessage.value = '';
+  try {
+    const response = await getAiRecommendation({
+      mood: form.mood,
+      appetite: form.appetite,
+      condition: form.condition,
+    });
     result.value = {
-      menu: '닭가슴살 샐러드 + 고구마',
-      alternatives: ['두부 스테이크', '연어 구이', '그릭요거트 볼'],
-      reason:
-        '저번 기록에서 고지방 식단 시 메스꺼움이 증가했어요. 단백질·식이섬유가 높고 소화가 편한 메뉴를 추천합니다.',
+      menu: response?.menu || '추천 결과가 없습니다',
+      alternatives: response?.alternatives || [],
+      reason: response?.reason || '추천 이유가 제공되지 않았습니다.',
     };
+  } catch (error) {
+    errorMessage.value = error?.message || 'AI 추천 요청에 실패했습니다.';
+  } finally {
     loading.value = false;
-  }, 500);
+  }
 };
 </script>
