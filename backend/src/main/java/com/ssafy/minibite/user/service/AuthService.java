@@ -47,7 +47,6 @@ public class AuthService {
                 .age(age)
                 .personaType(null)
                 .onboardingDate(onboardingDate)
-                .birthDate(birthDate)
                 .build();
 
         userMapper.insertUser(user);
@@ -92,4 +91,3 @@ public class AuthService {
         return String.join(",", values);
     }
 }
-

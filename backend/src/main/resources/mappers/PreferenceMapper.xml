@@ -13,7 +13,7 @@
     </resultMap>
 
     <insert id="insertPreference">
-        INSERT INTO preference (
+        INSERT INTO preferences (
             user_id,
             allergies,
             dislikes,
@@ -35,9 +35,8 @@
             dislikes,
             preferred_textures,
             preferred_flavors
-        FROM preference
+        FROM preferences
         WHERE user_id = #{userId}
     </select>
 
 </mapper>
-

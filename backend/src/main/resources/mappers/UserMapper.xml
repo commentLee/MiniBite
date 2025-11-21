@@ -15,11 +15,10 @@
         <result property="age" column="age"/>
         <result property="personaType" column="persona_type"/>
         <result property="onboardingDate" column="onboarding_date"/>
-        <result property="birthDate" column="birth_date"/>
     </resultMap>
 
     <insert id="insertUser">
-        INSERT INTO user (
+        INSERT INTO users (
             user_id,
             password,
             nickname,
@@ -29,8 +28,7 @@
             gender,
             age,
             persona_type,
-            onboarding_date,
-            birth_date
+            onboarding_date
         ) VALUES (
             #{userId},
             #{password},
@@ -41,14 +39,13 @@
             #{gender},
             #{age},
             #{personaType},
-            #{onboardingDate},
-            #{birthDate}
+            #{onboardingDate}
         )
     </insert>
 
     <select id="existsByUserId" parameterType="string" resultType="boolean">
         SELECT CASE WHEN COUNT(1) > 0 THEN TRUE ELSE FALSE END
-        FROM user
+        FROM users
         WHERE user_id = #{userId}
     </select>
 
@@ -63,11 +60,9 @@
             gender,
             age,
             persona_type,
-            onboarding_date,
-            birth_date
-        FROM user
+            onboarding_date
+        FROM users
         WHERE user_id = #{userId}
     </select>
 
 </mapper>
-

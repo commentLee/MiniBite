@@ -7,7 +7,6 @@ import com.ssafy.minibite.user.domain.User;
 import com.ssafy.minibite.user.dto.ProfileResponse;
 import com.ssafy.minibite.user.repository.PreferenceMapper;
 import com.ssafy.minibite.user.repository.UserMapper;
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -34,13 +33,9 @@ public class UserService {
         List<String> allergies = preference != null ? splitToList(preference.getAllergies()) : Collections.emptyList();
         List<String> dislikes = preference != null ? splitToList(preference.getDislikes()) : Collections.emptyList();
 
-        LocalDate birthDate = user.getBirthDate();
-        String birthDateString = birthDate != null ? birthDate.toString() : null;
-
         return ProfileResponse.builder()
                 .userId(user.getUserId())
                 .nickname(user.getNickname())
-                .birthDate(birthDateString)
                 .gender(user.getGender())
                 .height(user.getHeight())
                 .weight(user.getWeight())
@@ -60,4 +55,3 @@ public class UserService {
                 .toList();
     }
 }
-

@@ -1,6 +1,5 @@
 package com.ssafy.minibite.user.domain;
 
-import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,6 +21,4 @@ public class User {
     private Integer age;
     private String personaType;
     private LocalDate onboardingDate;
-    private LocalDate birthDate;
 }
-
