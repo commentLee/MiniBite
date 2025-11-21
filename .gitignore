@@ -5,6 +5,7 @@
 # AI 에이전트 도구 및 설정 폴더 (개인 설정/캐시 제외)
 .gemini/
 .codex/
+AGENTS.md
 
 # 디자인 참조용 원본 HTML (소스코드가 아니므로 제외)
 sample_html/

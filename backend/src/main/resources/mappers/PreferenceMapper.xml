@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.minibite.user.repository.PreferenceMapper">
+
+    <resultMap id="PreferenceResultMap" type="com.ssafy.minibite.user.domain.Preference">
+        <id property="userId" column="user_id"/>
+        <result property="allergies" column="allergies"/>
+        <result property="dislikes" column="dislikes"/>
+        <result property="preferredTextures" column="preferred_textures"/>
+        <result property="preferredFlavors" column="preferred_flavors"/>
+    </resultMap>
+
+    <insert id="insertPreference">
+        INSERT INTO preference (
+            user_id,
+            allergies,
+            dislikes,
+            preferred_textures,
+            preferred_flavors
+        ) VALUES (
+            #{userId},
+            #{allergies},
+            #{dislikes},
+            #{preferredTextures},
+            #{preferredFlavors}
+        )
+    </insert>
+
+    <select id="findByUserId" parameterType="string" resultMap="PreferenceResultMap">
+        SELECT
+            user_id,
+            allergies,
+            dislikes,
+            preferred_textures,
+            preferred_flavors
+        FROM preference
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>
+
