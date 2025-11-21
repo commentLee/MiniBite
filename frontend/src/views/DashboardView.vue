@@ -10,6 +10,7 @@
     </section>
 
     <FabButton @click="handleFabClick" />
+    <MealRecordModal :open="showRecordModal" @close="showRecordModal = false" @saved="onRecordSaved" />
   </div>
 </template>
 
@@ -20,9 +21,17 @@ import SideEffectsWidget from '../components/dashboard/SideEffectsWidget.vue';
 import NutritionChart from '../components/dashboard/NutritionChart.vue';
 import SafeFoodsWidget from '../components/dashboard/SafeFoodsWidget.vue';
 import FabButton from '../components/common/FabButton.vue';
+import MealRecordModal from '../components/dashboard/MealRecordModal.vue';
+import { ref } from 'vue';
 
 const handleFabClick = () => {
-  // TODO: 식단/건강 상태 기록 모달 연결
-  alert('기록 모달을 연결해 주세요.');
+  showRecordModal.value = true;
 };
+
+const onRecordSaved = () => {
+  // TODO: 저장 후 통계/위젯 갱신 연동
+  // 현재는 알림 없이 모달만 닫습니다.
+};
+
+const showRecordModal = ref(false);
 </script>
